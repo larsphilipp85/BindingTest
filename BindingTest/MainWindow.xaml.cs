@@ -23,6 +23,8 @@ namespace BindingTest
         public List<Persons> lstPersons { get; set; }
         public List<Locations> lstLocations { get; set; }
         public List<string> lstKlima { get; set; }
+        public List<DaysOfWeek> lstDaysOfWeek { get; set; }
+        public DaysOfWeek DOW { get; set; }
         public Persons Person { get; set; }
         public MainWindow()
         {
@@ -35,19 +37,30 @@ namespace BindingTest
                 MobilNr = "07143416914",
                 Klima = "Warm"
             };
+            DOW = new DaysOfWeek();
 
             lstPersons = new List<Persons>();
             lstLocations = new List<Locations>();
             lstKlima = new List<string> {"Kalt", "Gemäßigt", "Warm", "Heiß" };
+            lstDaysOfWeek = new List<MainWindow.DaysOfWeek>();
 
             lstPersons.Add(Person);            
             lstLocations.Add(new Locations("Mettmann", 40822, "NRW"));
             lstLocations.Add(new Locations("Monheim am Rhein", 40789, "NRW"));
+            lstDaysOfWeek.Add(new DaysOfWeek("Montag", 1));
+            lstDaysOfWeek.Add(new DaysOfWeek("Dienstag", 2));
+            lstDaysOfWeek.Add(new DaysOfWeek("Mittwoch", 3));
+            lstDaysOfWeek.Add(new DaysOfWeek("Donnerstag", 4));
+            lstDaysOfWeek.Add(new DaysOfWeek("Freitag", 5));
+            lstDaysOfWeek.Add(new DaysOfWeek("Samstag", 6));
+            lstDaysOfWeek.Add(new DaysOfWeek("Sonntag", 7));
 
             DGCB_Location.ItemsSource = lstLocations;
             DGCB_Climate.ItemsSource = lstKlima;
+            CBox_DayOfWeek.ItemsSource = lstDaysOfWeek;
             DG_Test.ItemsSource = lstPersons;
             Person.Location = lstLocations[0];
+            DOW = lstDaysOfWeek[0];
         }
 
         public class Persons
@@ -82,6 +95,17 @@ namespace BindingTest
                 this.ZIP = zip;
                 this.County = county;
             }
+        }
+        public class DaysOfWeek
+        {
+            public string Day { get; set; }
+            public int Value { get; set; }
+            public DaysOfWeek(string day, int value)
+            {
+                this.Day = day;
+                this.Value = value;
+            }
+            public DaysOfWeek() { }
         }
         private void DG_Test_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {

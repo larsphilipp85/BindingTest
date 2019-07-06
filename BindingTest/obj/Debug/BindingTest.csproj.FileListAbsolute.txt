@@ -28,3 +28,17 @@ D:\OneDrive\Projekte\VS2013\BindingTest\BindingTest\obj\Debug\BindingTest_Markup
 D:\GitHub\BindingTest\BindingTest\BindingTest\bin\Debug\BindingTest.exe.config
 D:\GitHub\BindingTest\BindingTest\BindingTest\obj\Debug\BindingTest.exe
 D:\GitHub\BindingTest\BindingTest\BindingTest\obj\Debug\BindingTest.pdb
+D:\GitHub\BindingTest\BindingTest\bin\Debug\BindingTest.exe.config
+D:\GitHub\BindingTest\BindingTest\obj\Debug\BindingTest.exe
+D:\GitHub\BindingTest\BindingTest\obj\Debug\BindingTest.pdb
+D:\GitHub\BindingTest\BindingTest\bin\Debug\BindingTest.exe
+D:\GitHub\BindingTest\BindingTest\bin\Debug\BindingTest.pdb
+D:\GitHub\BindingTest\BindingTest\obj\Debug\BindingTest.csprojResolveAssemblyReference.cache
+D:\GitHub\BindingTest\BindingTest\obj\Debug\MainWindow.g.cs
+D:\GitHub\BindingTest\BindingTest\obj\Debug\App.g.cs
+D:\GitHub\BindingTest\BindingTest\obj\Debug\BindingTest_MarkupCompile.cache
+D:\GitHub\BindingTest\BindingTest\obj\Debug\BindingTest_MarkupCompile.lref
+D:\GitHub\BindingTest\BindingTest\obj\Debug\MainWindow.baml
+D:\GitHub\BindingTest\BindingTest\obj\Debug\BindingTest.g.resources
+D:\GitHub\BindingTest\BindingTest\obj\Debug\BindingTest.Properties.Resources.resources
+D:\GitHub\BindingTest\BindingTest\obj\Debug\BindingTest.csproj.GenerateResource.Cache
