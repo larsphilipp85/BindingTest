@@ -14,6 +14,9 @@
                 <DataGridComboBoxColumn x:Name="DGCB_Climate" Header="Klima" Width="100" SelectedItemBinding="{Binding Path=Klima}" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="Btn_Add" Content="Hinzufügen" Width="100" Margin="6" HorizontalAlignment="Left" Click="Btn_Add_Click" />
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="Btn_Add" Content="Hinzufügen" Width="100" Margin="6,6,0,6" HorizontalAlignment="Left" Click="Btn_Add_Click" />
+            <ComboBox Name="CBox_DayOfWeek" Width="100" Margin="6" />
+        </StackPanel>
     </StackPanel>
 </Window>
