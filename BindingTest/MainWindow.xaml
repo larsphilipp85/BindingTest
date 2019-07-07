@@ -16,7 +16,7 @@
         </DataGrid>
         <StackPanel Orientation="Horizontal">
             <Button x:Name="Btn_Add" Content="Hinzufügen" Width="100" Margin="6,6,0,6" HorizontalAlignment="Left" Click="Btn_Add_Click" />
-            <ComboBox Name="CBox_DayOfWeek" Width="100" Margin="6" SelectedValue="{Binding Path=DOW}" SelectedValuePath="DOW" DisplayMemberPath="Day"/>
+            <ComboBox Name="CBox_DayOfWeek" Width="100" Margin="6" DisplayMemberPath="Day" SelectionChanged="CBox_DayOfWeek_SelectionChanged" />
         </StackPanel>
     </StackPanel>
 </Window>

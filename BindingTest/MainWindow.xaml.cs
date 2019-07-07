@@ -59,8 +59,8 @@ namespace BindingTest
             DGCB_Climate.ItemsSource = lstKlima;
             CBox_DayOfWeek.ItemsSource = lstDaysOfWeek;
             DG_Test.ItemsSource = lstPersons;
-            Person.Location = lstLocations[0];
-            DOW = lstDaysOfWeek[0];
+            Person.Location = lstLocations[0]; 
+            CBox_DayOfWeek.SelectedIndex = 0;
         }
 
         public class Persons
@@ -113,8 +113,13 @@ namespace BindingTest
 
         private void Btn_Add_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(String.Format("Der Stadt von Philipp ist {0} und hat die PLZ {1}.", lstPersons[0].Location.City, lstPersons[0].Location.ZIP), null, MessageBoxButton.OK);
+            MessageBox.Show(String.Format("Day von DOW ist {0}.", DOW.Day), null, MessageBoxButton.OK);
             DG_Test.Items.Refresh();
+        }
+
+        private void CBox_DayOfWeek_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        -{
+            DOW = (DaysOfWeek)(CBox_DayOfWeek.SelectedItem);
         }
     }
 }
