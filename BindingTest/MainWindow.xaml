@@ -16,7 +16,8 @@
         </DataGrid>
         <StackPanel Orientation="Horizontal">
             <Button x:Name="Btn_Add" Content="Hinzufügen" Width="100" Margin="6,6,0,6" HorizontalAlignment="Left" Click="Btn_Add_Click" />
-            <ComboBox Name="CBox_DayOfWeek" Width="100" Margin="6" DisplayMemberPath="Day" SelectionChanged="CBox_DayOfWeek_SelectionChanged" />
+            <ComboBox Name="CBox_DayOfWeek" Width="100" Margin="6,6,0,6" DisplayMemberPath="Day" SelectedItem="{Binding Path=DOW}" />
+            <CheckBox Name="CB_ShowColumn" Width="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="6" />
         </StackPanel>
     </StackPanel>
 </Window>
