@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\GitHub\BindingTest\BindingTest\obj\Debug\
+C:\Users\phili\Documents\Github\BindingTest\BindingTest\obj\Debug\
 BindingTest
 none
 false
 DEBUG;TRACE
-D:\GitHub\BindingTest\BindingTest\App.xaml
+C:\Users\phili\Documents\Github\BindingTest\BindingTest\App.xaml
 11151548125
 
 101666123166
 15876663143
 MainWindow.xaml;
 
-False
+True
 

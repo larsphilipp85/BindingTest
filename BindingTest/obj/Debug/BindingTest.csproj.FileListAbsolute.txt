@@ -42,3 +42,17 @@ D:\GitHub\BindingTest\BindingTest\obj\Debug\BindingTest.g.resources
 D:\GitHub\BindingTest\BindingTest\obj\Debug\BindingTest.Properties.Resources.resources
 D:\GitHub\BindingTest\BindingTest\obj\Debug\BindingTest.csproj.GenerateResource.Cache
 D:\GitHub\BindingTest\BindingTest\obj\Debug\BindingTest.csprojResolveAssemblyReference.cache
+C:\Users\phili\Documents\Github\BindingTest\BindingTest\bin\Debug\BindingTest.exe.config
+C:\Users\phili\Documents\Github\BindingTest\BindingTest\obj\Debug\BindingTest.exe
+C:\Users\phili\Documents\Github\BindingTest\BindingTest\obj\Debug\BindingTest.pdb
+C:\Users\phili\Documents\Github\BindingTest\BindingTest\obj\Debug\BindingTest.csprojResolveAssemblyReference.cache
+C:\Users\phili\Documents\Github\BindingTest\BindingTest\obj\Debug\MainWindow.g.cs
+C:\Users\phili\Documents\Github\BindingTest\BindingTest\obj\Debug\App.g.cs
+C:\Users\phili\Documents\Github\BindingTest\BindingTest\obj\Debug\BindingTest_MarkupCompile.cache
+C:\Users\phili\Documents\Github\BindingTest\BindingTest\obj\Debug\BindingTest_MarkupCompile.lref
+C:\Users\phili\Documents\Github\BindingTest\BindingTest\bin\Debug\BindingTest.exe
+C:\Users\phili\Documents\Github\BindingTest\BindingTest\bin\Debug\BindingTest.pdb
+C:\Users\phili\Documents\Github\BindingTest\BindingTest\obj\Debug\MainWindow.baml
+C:\Users\phili\Documents\Github\BindingTest\BindingTest\obj\Debug\BindingTest.g.resources
+C:\Users\phili\Documents\Github\BindingTest\BindingTest\obj\Debug\BindingTest.Properties.Resources.resources
+C:\Users\phili\Documents\Github\BindingTest\BindingTest\obj\Debug\BindingTest.csproj.GenerateResource.Cache

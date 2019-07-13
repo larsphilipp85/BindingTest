@@ -38,6 +38,8 @@ namespace BindingTest
                 Klima = "Warm"
             };
             DOW = new DaysOfWeek();
+            CBox_DayOfWeek.DataContext = this;
+            DG_Test.DataContext = this;
 
             lstPersons = new List<Persons>();
             lstLocations = new List<Locations>();
@@ -116,10 +118,18 @@ namespace BindingTest
             MessageBox.Show(String.Format("Day von DOW ist {0}.", DOW.Day), null, MessageBoxButton.OK);
             DG_Test.Items.Refresh();
         }
+    }
 
-        private void CBox_DayOfWeek_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        -{
-            DOW = (DaysOfWeek)(CBox_DayOfWeek.SelectedItem);
+    public class B2VConv : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
         }
     }
 }
