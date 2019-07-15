@@ -29,7 +29,7 @@
                       Width="20"
                       Style="{StaticResource Style_Checkbox}"
                       IsThreeState="False"
-                      IsChecked="{Binding Path=ShowColumn, Converter={StaticResource B2VC}}">
+                      IsChecked="{Binding ElementName=DGCB_Climate, Path=Visibility, Converter={StaticResource B2VC}}">
             </CheckBox>
         </StackPanel>
     </StackPanel>
