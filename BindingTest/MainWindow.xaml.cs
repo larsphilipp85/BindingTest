@@ -20,6 +20,7 @@ namespace BindingTest
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Visibility ShowColumn { get; set; }
         public List<Persons> lstPersons { get; set; }
         public List<Locations> lstLocations { get; set; }
         public List<string> lstKlima { get; set; }
@@ -40,6 +41,13 @@ namespace BindingTest
             DOW = new DaysOfWeek();
             CBox_DayOfWeek.DataContext = this;
             DG_Test.DataContext = this;
+            SP_UserControl.DataContext = this;
+            Binding bndg = new Binding();
+            bndg.Source = this;
+   
+            bndg.Path = (PropertyPath)(new PropertyPathConverter().ConvertFromString("ShowColumn"));
+            bndg.Mode = BindingMode.TwoWay;
+            System.Windows.Data.BindingOperations.SetBinding(DGCB_Climate, DataGridColumn.VisibilityProperty, bndg);
 
             lstPersons = new List<Persons>();
             lstLocations = new List<Locations>();
@@ -115,21 +123,29 @@ namespace BindingTest
 
         private void Btn_Add_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(String.Format("Day von DOW ist {0}.", DOW.Day), null, MessageBoxButton.OK);
-            DG_Test.Items.Refresh();
+            MessageBox.Show(String.Format("Die Sichtbarkeit von ShowColumn ist {0}.", ShowColumn.ToString()), null, MessageBoxButton.OK);
         }
     }
+
 
     public class B2VConv : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            throw new NotImplementedException();
+            if ((Visibility)(value) == Visibility.Visible) { return true; }
+            else { return false; }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            throw new NotImplementedException();
+            if ((bool)(value))
+            {
+                return Visibility.Visible;
+            }
+            else
+            {
+                return Visibility.Collapsed;
+            }
         }
     }
 }

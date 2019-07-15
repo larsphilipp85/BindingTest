@@ -4,6 +4,14 @@
         xmlns:local="clr-namespace:BindingTest" x:Class="BindingTest.MainWindow"
         Title="MainWindow"
         SizeToContent="WidthAndHeight">
+    <Window.Resources>
+        <Style TargetType="CheckBox" x:Key="Style_Checkbox">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Margin" Value="6,6,0,6" />
+        </Style>
+        <local:B2VConv x:Key="B2VC" />
+    </Window.Resources>
     <StackPanel>
         <DataGrid x:Name="DG_Test" Height="500" Width="500" ColumnHeaderHeight="25" AutoGenerateColumns="False" SelectedItem="{Binding Path=Person}" CellEditEnding="DG_Test_CellEditEnding">
             <DataGrid.Columns>
@@ -14,10 +22,15 @@
                 <DataGridComboBoxColumn x:Name="DGCB_Climate" Header="Klima" Width="100" SelectedItemBinding="{Binding Path=Klima}" />
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel x:Name="SP_UserControl" Orientation="Horizontal">
             <Button x:Name="Btn_Add" Content="Hinzufügen" Width="100" Margin="6,6,0,6" HorizontalAlignment="Left" Click="Btn_Add_Click" />
             <ComboBox Name="CBox_DayOfWeek" Width="100" Margin="6,6,0,6" DisplayMemberPath="Day" SelectedItem="{Binding Path=DOW}" />
-            <CheckBox Name="CB_ShowColumn" Width="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="6" />
+            <CheckBox Name="CB_ShowColumn"
+                      Width="20"
+                      Style="{StaticResource Style_Checkbox}"
+                      IsThreeState="False"
+                      IsChecked="{Binding Path=ShowColumn, Converter={StaticResource B2VC}}">
+            </CheckBox>
         </StackPanel>
     </StackPanel>
 </Window>
