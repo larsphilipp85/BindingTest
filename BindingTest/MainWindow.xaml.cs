@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,16 +22,19 @@ namespace BindingTest
     /// </summary>
     public partial class MainWindow : Window
     {
-        public Visibility ShowColumn { get; set; }
-        public List<Persons> lstPersons { get; set; }
+        public ObservableCollection<Persons> lstPersons { get; set; }
         public List<Locations> lstLocations { get; set; }
-        public List<string> lstKlima { get; set; }
+        public List<string> lstKlimas { get; set; }
         public List<DaysOfWeek> lstDaysOfWeek { get; set; }
         public DaysOfWeek DOW { get; set; }
         public Persons Person { get; set; }
+        public bool Aktiviert1 { get; set; }
+        public bool Aktiviert2 { get; set; }
         public MainWindow()
         {
             InitializeComponent();
+            DG_Test.DataContext = this;
+            SP_UserControl.DataContext = this;
 
             Person = new Persons
             {
@@ -39,24 +44,17 @@ namespace BindingTest
                 Klima = "Warm"
             };
             DOW = new DaysOfWeek();
-            CBox_DayOfWeek.DataContext = this;
-            DG_Test.DataContext = this;
-            SP_UserControl.DataContext = this;
-            Binding bndg = new Binding();
-            bndg.Source = this;
-   
-            bndg.Path = (PropertyPath)(new PropertyPathConverter().ConvertFromString("ShowColumn"));
-            bndg.Mode = BindingMode.TwoWay;
-            System.Windows.Data.BindingOperations.SetBinding(DGCB_Climate, DataGridColumn.VisibilityProperty, bndg);
-
-            lstPersons = new List<Persons>();
+            lstPersons = new ObservableCollection<Persons>();
             lstLocations = new List<Locations>();
-            lstKlima = new List<string> {"Kalt", "Gemäßigt", "Warm", "Heiß" };
-            lstDaysOfWeek = new List<MainWindow.DaysOfWeek>();
-
-            lstPersons.Add(Person);            
+            lstDaysOfWeek = new List<DaysOfWeek>();
+            lstKlimas = new List<string> { "Kalt", "Gemäßigt", "Warm", "Heiß" };
             lstLocations.Add(new Locations("Mettmann", 40822, "NRW"));
             lstLocations.Add(new Locations("Monheim am Rhein", 40789, "NRW"));
+            lstPersons.Add(Person);
+
+            DGCB_Location.ItemsSource = lstLocations;
+            DGCB_Climate.ItemsSource = lstKlimas;
+            
             lstDaysOfWeek.Add(new DaysOfWeek("Montag", 1));
             lstDaysOfWeek.Add(new DaysOfWeek("Dienstag", 2));
             lstDaysOfWeek.Add(new DaysOfWeek("Mittwoch", 3));
@@ -65,10 +63,6 @@ namespace BindingTest
             lstDaysOfWeek.Add(new DaysOfWeek("Samstag", 6));
             lstDaysOfWeek.Add(new DaysOfWeek("Sonntag", 7));
 
-            DGCB_Location.ItemsSource = lstLocations;
-            DGCB_Climate.ItemsSource = lstKlima;
-            CBox_DayOfWeek.ItemsSource = lstDaysOfWeek;
-            DG_Test.ItemsSource = lstPersons;
             Person.Location = lstLocations[0]; 
             CBox_DayOfWeek.SelectedIndex = 0;
         }
@@ -93,19 +87,6 @@ namespace BindingTest
                 return result;
             }
         }        
-        public class Locations
-        {
-            public string City { get; set; }
-            public int ZIP { get; set; }
-            public string County { get; set; }
-            public Locations() {}
-            public Locations(string city, int zip, string county)
-            {
-                this.City = city;
-                this.ZIP = zip;
-                this.County = county;
-            }
-        }
         public class DaysOfWeek
         {
             public string Day { get; set; }
@@ -120,14 +101,63 @@ namespace BindingTest
         private void DG_Test_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
         }
-
         private void Btn_Add_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(String.Format("Die Sichtbarkeit von ShowColumn ist {0}.", ShowColumn.ToString()), null, MessageBoxButton.OK);
+            BitArray bitArray64 = new BitArray(64);
+            for (int index = 0; index < bitArray64.Length; index += 4)
+            {
+                bitArray64[index] = true;
+            }
+            ulong ergebnis = Conversion.ToULong(array: bitArray64);
+
+            MessageBox.Show(String.Format("Das Ergebnis lautet: {0}.", ergebnis.ToString("N0")), "Umwandlung", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
+    public class Locations
+    {
+        public string City { get; set; }
+        public int ZIP { get; set; }
+        public string County { get; set; }
+        public Locations() { }
+        public Locations(string city, int zip, string county)
+        {
+            this.City = city;
+            this.ZIP = zip;
+            this.County = county;
+        }
+    }
+    public class B2MVConv: IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            List<Visibility> visibilities = new List<Visibility>(values.Length);
+            visibilities = values.Cast<Visibility>().ToList();
+            return visibilities.All(x => x == Visibility.Visible);
+        }
 
-
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        {
+            bool isChecked = (bool)(value);
+            List<object> result = new List<object>();
+            Visibility visible = Visibility.Visible;
+            Visibility collapsed = Visibility.Collapsed;
+            if (isChecked) 
+            { 
+                for (int index = 0; index < targetTypes.Length; index++) 
+                { 
+                    result.Add(visible); 
+                } 
+            }
+            else 
+            { 
+                for (int index = 0; index < targetTypes.Length; index++) 
+                { 
+                    result.Add(collapsed); 
+                } 
+            } 
+            return result.ToArray();
+        }
+    }
     public class B2VConv : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
@@ -146,6 +176,20 @@ namespace BindingTest
             {
                 return Visibility.Collapsed;
             }
+        }
+    }
+    public class Conversion
+    {
+        /// <summary>
+        /// Wandelt ein 64-Bitarray in eine 64-Bit Ganzzahl ohne Vorzeichen um.
+        /// </summary>
+        /// <param name="array">Das umzuwandelnde 64-Bitarray.</param>
+        /// <returns>Das umgewandelte Array als 64-Bit Ganzzahl.</returns>
+        public static ulong ToULong(BitArray array)
+        {
+            byte[] result = new byte[8];
+            array.CopyTo(result, 0);
+            return BitConverter.ToUInt64(result, 0);
         }
     }
 }

@@ -56,4 +56,5 @@ C:\Users\phili\Documents\Github\BindingTest\BindingTest\obj\Debug\BindingTest.g.
 C:\Users\phili\Documents\Github\BindingTest\BindingTest\obj\Debug\BindingTest.Properties.Resources.resources
 C:\Users\phili\Documents\Github\BindingTest\BindingTest\obj\Debug\BindingTest.csproj.GenerateResource.Cache
 C:\Users\phili\Documents\Github\BindingTest\BindingTest\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\phili\Documents\Github\BindingTest\BindingTest\obj\Debug\App.baml
 C:\Users\phili\Documents\Github\BindingTest\BindingTest\obj\Debug\BindingTest.csprojResolveAssemblyReference.cache

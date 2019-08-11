@@ -10,26 +10,52 @@
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="Margin" Value="6,6,0,6" />
         </Style>
+        <Style TargetType="DataGridColumnHeader" x:Key="Style_DGH">
+            <Setter Property="Width" Value="125" />
+        </Style>
         <local:B2VConv x:Key="B2VC" />
+        <local:B2MVConv x:Key="B2MVC" />
     </Window.Resources>
     <StackPanel>
-        <DataGrid x:Name="DG_Test" Height="500" Width="500" ColumnHeaderHeight="25" AutoGenerateColumns="False" SelectedItem="{Binding Path=Person}" CellEditEnding="DG_Test_CellEditEnding">
+        <DataGrid x:Name="DG_Test"
+                  Height="500"
+                  ColumnHeaderHeight="25"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  CanUserResizeRows="False"
+                  ItemsSource="{Binding Path=lstPersons}"
+                  CellEditEnding="DG_Test_CellEditEnding">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Vorname" Width="100" Binding="{Binding Vorname}" />
-                <DataGridTextColumn Header="Name" Width="100" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="Mobil-Nr." Width="100" Binding="{Binding MobilNr}" />
-                <DataGridComboBoxColumn x:Name="DGCB_Location" Header="Ort" Width="100" SelectedItemBinding="{Binding Path=Location}" DisplayMemberPath="City" />
-                <DataGridComboBoxColumn x:Name="DGCB_Climate" Header="Klima" Width="100" SelectedItemBinding="{Binding Path=Klima}" />
+                <DataGridTextColumn Header="Vorname" HeaderStyle="{StaticResource ResourceKey=Style_DGH}" Binding="{Binding Path=Vorname}" />
+                <DataGridTextColumn Header="Name" HeaderStyle="{StaticResource ResourceKey=Style_DGH}" Binding="{Binding Path=Name}" />
+                <DataGridTextColumn Header="Mobil-Nr." HeaderStyle="{StaticResource ResourceKey=Style_DGH}" Binding="{Binding Path=MobilNr}" />
+                <DataGridComboBoxColumn x:Name="DGCB_Location" Header="Ort" HeaderStyle="{StaticResource ResourceKey=Style_DGH}" SelectedItemBinding="{Binding Path=Location}" DisplayMemberPath="City"/>
+                <DataGridComboBoxColumn x:Name="DGCB_Climate" Header="Klima" HeaderStyle="{StaticResource ResourceKey=Style_DGH}" SelectedItemBinding="{Binding Path=Klima}" />
+                <DataGridComboBoxColumn x:Name="DGCB_LVTest" Header="Test-CB" HeaderStyle="{StaticResource ResourceKey=Style_DGH}" ItemsSource="{StaticResource ResourceKey=LVS}" />
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel x:Name="SP_UserControl" Orientation="Horizontal">
             <Button x:Name="Btn_Add" Content="Hinzufügen" Width="100" Margin="6,6,0,6" HorizontalAlignment="Left" Click="Btn_Add_Click" />
-            <ComboBox Name="CBox_DayOfWeek" Width="100" Margin="6,6,0,6" DisplayMemberPath="Day" SelectedItem="{Binding Path=DOW}" />
-            <CheckBox Name="CB_ShowColumn"
-                      Width="20"
+            <ComboBox Name="CBox_DayOfWeek" Width="100" Margin="6,6,0,6" ItemsSource="{Binding Path=lstDaysOfWeek}" SelectedItem="{Binding Path=DOW}" DisplayMemberPath="Day" />
+            <CheckBox Name="CB_ShowClimate"
+                      Content="Zeige Klima"
+                      HorizontalContentAlignment="Left"
+                      Width="100"
                       Style="{StaticResource Style_Checkbox}"
                       IsThreeState="False"
                       IsChecked="{Binding ElementName=DGCB_Climate, Path=Visibility, Converter={StaticResource B2VC}}">
+            </CheckBox>
+            <CheckBox Name="CB_ShowColumns"
+                      Content="Mehrfach"
+                      HorizontalContentAlignment="Left"
+                      Width="100"
+                      Style="{StaticResource Style_Checkbox}">
+                <CheckBox.IsChecked>
+                    <MultiBinding Converter="{StaticResource B2MVC}">
+                        <Binding ElementName="DGCB_Climate" Path="Visibility" />
+                        <Binding ElementName="DGCB_Location" Path="Visibility" />
+                    </MultiBinding>                   
+                </CheckBox.IsChecked>
             </CheckBox>
         </StackPanel>
     </StackPanel>
