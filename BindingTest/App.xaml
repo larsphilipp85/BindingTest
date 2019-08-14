@@ -8,6 +8,5 @@
             <ComboBoxItem Content="Hallo" Background="Beige" Opacity="0.5"/>
             <ComboBoxItem Content="Welt!" Background="Bisque" />
         </x:ArrayExtension>
-
     </Application.Resources>
 </Application>

@@ -16,7 +16,6 @@
         <local:B2VConv x:Key="B2VC" />
         <local:V2BConv x:Key="V2BC" /> 
         <local:B2MVConv x:Key="B2MVC" />
-        <local:InputValidations x:Key="InputValidator" />
     </Window.Resources>
     <StackPanel>
         <DataGrid x:Name="DG_Test"
@@ -28,7 +27,15 @@
                   ItemsSource="{Binding Path=lstPersons}"
                   CellEditEnding="DG_Test_CellEditEnding">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Vorname" HeaderStyle="{StaticResource ResourceKey=Style_DGH}" Binding="{Binding Path=Vorname}" />
+                <DataGridTextColumn Header="Vorname" HeaderStyle="{StaticResource ResourceKey=Style_DGH}">
+                    <DataGridTextColumn.Binding>
+                        <Binding Path="Vorname" UpdateSourceTrigger="LostFocus">
+                            <Binding.ValidationRules>
+                                <local:InputValidations ValidatesOnTargetUpdated="False" ValidationStep="CommittedValue" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
                 <DataGridTextColumn Header="Name" HeaderStyle="{StaticResource ResourceKey=Style_DGH}" Binding="{Binding Path=Name}" />
                 <DataGridTextColumn Header="Mobil-Nr." HeaderStyle="{StaticResource ResourceKey=Style_DGH}" Binding="{Binding Path=MobilNr}" />
                 <DataGridComboBoxColumn x:Name="DGCB_Location" Header="Ort" HeaderStyle="{StaticResource ResourceKey=Style_DGH}" SelectedItemBinding="{Binding Path=Location}" DisplayMemberPath="City"/>

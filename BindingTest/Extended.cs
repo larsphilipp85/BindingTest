@@ -25,7 +25,8 @@ namespace BindingTest
     {
         public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)
         {
-            throw new NotImplementedException();
+
+            return new ValidationResult(isValid: true, errorContent: null);
         }
     }
 }
