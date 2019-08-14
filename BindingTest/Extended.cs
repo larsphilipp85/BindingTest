@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace BindingTest
 {
-    public class Extended
+    public partial class Extended
     {
         public static string Extra = "Onboard";
         public class SUBs
@@ -18,6 +19,13 @@ namespace BindingTest
                     return "Ja";
                 }
             }
+        }
+    }
+    public class InputValidations: ValidationRule
+    {
+        public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)
+        {
+            throw new NotImplementedException();
         }
     }
 }

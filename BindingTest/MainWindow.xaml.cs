@@ -28,8 +28,7 @@ namespace BindingTest
         public List<DaysOfWeek> lstDaysOfWeek { get; set; }
         public DaysOfWeek DOW { get; set; }
         public Persons Person { get; set; }
-        public bool Aktiviert1 { get; set; }
-        public bool Aktiviert2 { get; set; }
+        public bool IsColumnVisible { get; set; }
         public MainWindow()
         {
             InitializeComponent();
@@ -63,8 +62,10 @@ namespace BindingTest
             lstDaysOfWeek.Add(new DaysOfWeek("Samstag", 6));
             lstDaysOfWeek.Add(new DaysOfWeek("Sonntag", 7));
 
-            Person.Location = lstLocations[0]; 
+            Person.Location = lstLocations[0];
             CBox_DayOfWeek.SelectedIndex = 0;
+
+             
         }
 
         public class Persons
@@ -176,6 +177,26 @@ namespace BindingTest
             {
                 return Visibility.Collapsed;
             }
+        }
+    }
+    public class V2BConv: IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if ((bool)(value))
+            {
+                return Visibility.Visible;
+            }
+            else
+            {
+                return Visibility.Collapsed;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if ((Visibility)(value) == Visibility.Visible) { return true; }
+            else { return false; }
         }
     }
     public class Conversion

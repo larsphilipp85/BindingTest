@@ -1,11 +1,13 @@
 ﻿<Application x:Class="BindingTest.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:BindingTest"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <x:ArrayExtension Type="ComboBoxItem" x:Key="LVS">
             <ComboBoxItem Content="Hallo" Background="Beige" Opacity="0.5"/>
             <ComboBoxItem Content="Welt!" Background="Bisque" />
         </x:ArrayExtension>
+
     </Application.Resources>
 </Application>
