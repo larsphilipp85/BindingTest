@@ -87,6 +87,15 @@ namespace BindingTest
                 result.MobilNr = zufall.ToString();
                 return result;
             }
+            public Persons() { }
+            public Persons(string vorname, string name, string mobil, Locations location, string klima)
+            {
+                this.Vorname = vorname;
+                this.Name = name;
+                this.MobilNr = mobil;
+                this.Location = location;
+                this.Klima = klima;
+            }
         }        
         public class DaysOfWeek
         {
@@ -104,14 +113,12 @@ namespace BindingTest
         }
         private void Btn_Add_Click(object sender, RoutedEventArgs e)
         {
-            BitArray bitArray64 = new BitArray(64);
-            for (int index = 0; index < bitArray64.Length; index += 4)
-            {
-                bitArray64[index] = true;
-            }
-            ulong ergebnis = Conversion.ToULong(array: bitArray64);
+            lstPersons.Add(new Persons("Lars", "Meißner", "0174 341 69 14",new Locations("Mettmann", 40822, "NRW"), lstPersons.Select(x => x.Klima == "Kalt").ToString()));
+        }
 
-            MessageBox.Show(String.Format("Das Ergebnis lautet: {0}.", ergebnis.ToString("N0")), "Umwandlung", MessageBoxButton.OK, MessageBoxImage.Information);
+        private void Btn_Test_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(String.Format("Der Wert in Feld Mobil-Nr. lautet: {0}", Person.MobilNr), "Umwandlung", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
     public class Locations
