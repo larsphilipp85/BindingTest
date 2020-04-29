@@ -58,3 +58,6 @@ C:\Users\phili\Documents\Github\BindingTest\BindingTest\obj\Debug\BindingTest.cs
 C:\Users\phili\Documents\Github\BindingTest\BindingTest\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\phili\Documents\Github\BindingTest\BindingTest\obj\Debug\App.baml
 C:\Users\phili\Documents\Github\BindingTest\BindingTest\obj\Debug\BindingTest.csprojResolveAssemblyReference.cache
+C:\Users\Philipp\OneDrive\Dokumente\GitHub\BindingTest\BindingTest\bin\Debug\BindingTest.exe.config
+C:\Users\Philipp\OneDrive\Dokumente\GitHub\BindingTest\BindingTest\obj\Debug\BindingTest.exe
+C:\Users\Philipp\OneDrive\Dokumente\GitHub\BindingTest\BindingTest\obj\Debug\BindingTest.pdb
